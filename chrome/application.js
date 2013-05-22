@@ -23,7 +23,11 @@
         status = $prDoc.find('.merge-branch .branch-status').text().trim();
         status_color = (/good to merge/i).test(status) ? 'green' : 'red';
         $prHeader.find('#pr-sanity').remove();
-        $prHeader.append('<div id="pr-sanity"><span style="font-weight: bold; color: blue">' + assignee + '</span><div style="clear: both; color: ' + status_color + '; font-size: 12px; font-weight: normal">' + status + '</div></div>');
+        assignee_style = "font-weight: normal; color: green;";
+        if (assignee == "No one is assigned"){
+          assignee_style = "font-weight: bold; color: blue;";
+        }
+        $prHeader.append('<div id="pr-sanity"><span style="' + assignee_style + '">' + assignee + '</span><div style="clear: both; color: ' + status_color + '; font-size: 12px; font-weight: normal">' + status + '</div></div>');
       },
       dataType: 'html'
     });
